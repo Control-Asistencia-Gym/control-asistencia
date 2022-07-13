@@ -15,7 +15,7 @@ export const TableUser = () => {
   const columns = [
     { name: "NOMBRE", uid: "name" },
     { name: "CEDULA", uid: "cedula" },
-    { name: "FECHA INGRESO", uid: "date" },
+    { name: "FECHA INICIO - FIN", uid: "date" },
     { name: "CELULAR", uid: "tel" },
     { name: "CUOTA", uid: "status" },
     { name: "ACTIONS", uid: "actions" },
@@ -25,9 +25,9 @@ export const TableUser = () => {
     {
       id: 1,
       name: "Tony Reichert",
-      cedula: 123123,
-      date: "01-01-2022",
-      tel: 123123,
+      cedula: 4234234,
+      date: "01/01/2022 - 01/02/2022 ",
+      tel: 981234234,
       status: "activo",
     },
     {

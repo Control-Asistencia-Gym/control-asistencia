@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { Button, Col, Row, Spacer, Text } from "@nextui-org/react";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { Layout } from "../components/layouts";
 import { TableUser } from "../components/clientes";
+import { ModalUser } from "../components/ui";
 
 const HomePage: NextPage = () => {
   return (
@@ -13,9 +13,10 @@ const HomePage: NextPage = () => {
           <Text h3>Lista de usuarios</Text>
         </Col>
         <Col span={6} css={{ display: "flex", justifyContent: "right" }}>
-          <Button icon={<AiOutlineUserAdd size={20} />} flat>
+          {/* <Button icon={<AiOutlineUserAdd size={20} />} flat>
             Nuevo
-          </Button>
+          </Button> */}
+          <ModalUser />
         </Col>
       </Row>
       <Spacer y={1} />
