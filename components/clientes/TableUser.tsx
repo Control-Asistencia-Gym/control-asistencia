@@ -5,9 +5,10 @@ import { EyeIcon, IconButton, StyledBadge, DeleteIcon, EditIcon } from "../ui";
 type UserType = {
   id: string | number;
   name?: string;
-  cedula?: number;
+  cedula?: string;
   date?: string;
-  tel?: number;
+  time?: string;
+  tel?: string;
   status: "activo" | "vencido";
 };
 
@@ -16,6 +17,7 @@ export const TableUser = () => {
     { name: "NOMBRE", uid: "name" },
     { name: "CEDULA", uid: "cedula" },
     { name: "FECHA INICIO - FIN", uid: "date" },
+    { name: "HORARIO", uid: "time" },
     { name: "CELULAR", uid: "tel" },
     { name: "CUOTA", uid: "status" },
     { name: "ACTIONS", uid: "actions" },
@@ -25,9 +27,10 @@ export const TableUser = () => {
     {
       id: 1,
       name: "Tony Reichert",
-      cedula: 4234234,
+      cedula: "4.234.234",
       date: "01/01/2022 - 01/02/2022 ",
-      tel: 981234234,
+      time: "8:00 - 9:00",
+      tel: "981 234234",
       status: "activo",
     },
     {
@@ -103,7 +106,7 @@ export const TableUser = () => {
         return (
           <Row justify="center" align="center">
             {/* <Col css={{ d: "flex" }}>
-              <Tooltip content="Details">
+              <Tooltip content="Información">
                 <IconButton onClick={() => console.log("View user", user?.id)}>
                   <EyeIcon size={20} fill="#979797" />
                 </IconButton>
@@ -136,7 +139,7 @@ export const TableUser = () => {
 
   return (
     <Table
-      aria-label="Example table with custom cells"
+      aria-label="tabla usuarios"
       css={{
         height: "calc(100vh - 11rem)",
         minWidth: "100%",
@@ -164,6 +167,7 @@ export const TableUser = () => {
         )}
       </Table.Body>
       <Table.Pagination
+        color="gradient"
         shadow
         noMargin
         align="center"
