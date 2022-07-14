@@ -1,4 +1,6 @@
-import { Avatar, Container, Spacer, Text, useTheme } from "@nextui-org/react";
+import Image from "next/image";
+import { Avatar, Spacer, useTheme } from "@nextui-org/react";
+import logo from "../../public/logo.png";
 
 export const Navbar = () => {
   const { theme } = useTheme();
@@ -10,14 +12,14 @@ export const Navbar = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: '60px',
-        padding: '0 20px',
-        backgroundColor: theme?.colors.gray100.value,
+        minHeight: "60px",
+        padding: "0 20px",
+        backgroundColor: theme?.colors.gray50.value,
       }}
     >
-      <Text color="#000">LOGO</Text>
+      <Image width={200} height={50} layout="fixed" src={logo} alt="LOGO" />
       <Spacer css={{ flex: 1 }} />
-      <Avatar text="Primary" color="primary" textColor="white" />
+      <Avatar squared text="Primary" color="primary" textColor="white" />
     </div>
   );
 };

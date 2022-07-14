@@ -18,7 +18,7 @@ export const ModalUser = () => {
 
   return (
     <div>
-      <Button auto icon={<AiOutlineUserAdd size={20} />} onClick={handler}>
+      <Button auto color="gradient" icon={<AiOutlineUserAdd size={20} />} onClick={handler}>
         Agregar usuario
       </Button>
       <Modal
@@ -38,6 +38,7 @@ export const ModalUser = () => {
             <Col span={12}>
               <Input
                 clearable
+                aria-label="nombre Completo"
                 bordered
                 fullWidth
                 color="primary"
@@ -51,6 +52,7 @@ export const ModalUser = () => {
             <Col span={6}>
               <Input
                 clearable
+                aria-label="CI"
                 bordered
                 fullWidth
                 color="primary"
@@ -63,6 +65,7 @@ export const ModalUser = () => {
             <Col span={6}>
               <Input
                 clearable
+                aria-label="Numero de celular"
                 bordered
                 fullWidth
                 color="primary"
@@ -77,6 +80,7 @@ export const ModalUser = () => {
             <Col span={6}>
               <Input
                 bordered
+                aria-label="Fecha desde"
                 fullWidth
                 color="primary"
                 size="lg"
@@ -87,6 +91,7 @@ export const ModalUser = () => {
             <Col span={6}>
               <Input
                 bordered
+                aria-label="Fecha hasta"
                 fullWidth
                 color="primary"
                 size="lg"
@@ -95,12 +100,36 @@ export const ModalUser = () => {
               />
             </Col>
           </Row>
+          <Row gap={1}>
+            <Col span={6}>
+              <Input
+                bordered
+                aria-label="Hora desde"
+                fullWidth
+                color="primary"
+                size="lg"
+                type="time"
+                placeholder="Hora desde"
+              />
+            </Col>
+            <Col span={6}>
+              <Input
+                bordered
+                aria-label="Hora hasta"
+                fullWidth
+                color="primary"
+                size="lg"
+                type="time"
+                placeholder="Hora hasta"
+              />
+            </Col>
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button auto flat color="error" onClick={closeHandler}>
             Cancelar
           </Button>
-          <Button auto onClick={closeHandler}>
+          <Button auto color="gradient" onClick={closeHandler}>
             Agregar
           </Button>
         </Modal.Footer>

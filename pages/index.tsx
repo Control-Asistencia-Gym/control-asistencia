@@ -1,28 +1,35 @@
 import type { NextPage } from "next";
-import { Button, Col, Row, Spacer, Text } from "@nextui-org/react";
+import { Col, Input, Row, Spacer, Text } from "@nextui-org/react";
 import { Layout } from "../components/layouts";
 import { TableUser } from "../components/clientes";
-import { ModalUser } from "../components/ui";
+import { IconButton, ModalUser } from "../components/ui";
+import { BsSearch } from "react-icons/bs";
 
 const HomePage: NextPage = () => {
   return (
     <Layout>
       <Spacer y={1} />
       <Row>
-        <Col span={6}>
+        <Col span={4}>
           <Text h3>Lista de usuarios</Text>
         </Col>
-        <Col span={6} css={{ display: "flex", justifyContent: "right" }}>
-          {/* <Button icon={<AiOutlineUserAdd size={20} />} flat>
-            Nuevo
-          </Button> */}
+        <Col span={4} css={{ display: "flex", justifyContent: "center" }}>
+          <Input
+            placeholder="Buscar usuario"
+            clearable
+            contentLeft={
+              <IconButton onClick={() => console.log("click")}>
+                <BsSearch />
+              </IconButton>
+            }
+          />
+        </Col>
+        <Col span={4} css={{ display: "flex", justifyContent: "right" }}>
           <ModalUser />
         </Col>
       </Row>
       <Spacer y={1} />
-      <div>
-        <TableUser />
-      </div>
+      <TableUser />
     </Layout>
   );
 };
