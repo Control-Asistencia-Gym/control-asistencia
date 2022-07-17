@@ -15,9 +15,9 @@ export const Layout: FC<Props> = ({ children }) => {
         <meta name="author" content="Gustavo Doldan" />
       </Head>
       <Navbar />
-      <Container>
-        <main>{children}</main>
-      </Container>
+      <main>
+        <Container css={{height: "calc(100vh - 5.1rem)"}}>{children}</Container>
+      </main>
     </>
   );
 };
