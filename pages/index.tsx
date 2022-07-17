@@ -15,6 +15,7 @@ const HomePage: NextPage = () => {
         </Col>
         <Col span={4} css={{ display: "flex", justifyContent: "center" }}>
           <Input
+            aria-label="buscar usuario"
             placeholder="Buscar usuario"
             clearable
             contentLeft={
