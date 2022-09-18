@@ -1,1 +1,1 @@
-export {default as usersApi} from './usersApi';
+export {default as gymApi} from './gymApi';

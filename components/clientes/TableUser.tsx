@@ -1,9 +1,10 @@
-import { Key, useContext } from "react";
+import { useContext } from "react";
 import { Table, Row, Col, Tooltip, Text } from "@nextui-org/react";
-import { EyeIcon, IconButton, StyledBadge, DeleteIcon, EditIcon } from "../ui";
-import { UsersContext } from "../../context/users";
+import { IconButton, StyledBadge, DeleteIcon, EditIcon } from "../ui";
 import { IUser } from "../../interfaces";
 import { numericos } from "../../utils";
+import { UIContext } from "../../context/ui";
+import { UsersContext } from "../../context/users";
 
 const columns = [
   { name: "NOMBRE", uid: "nombre" },
@@ -16,110 +17,52 @@ const columns = [
 ];
 
 export const TableUser = () => {
-  const { users } = useContext(UsersContext);
+  const { openModal } = useContext(UIContext);
+  const { editUser, getUsers, users, dataPagination } =
+    useContext(UsersContext);
 
-  // const users: UserType[] = [
-  //   {
-  //     id: 1,
-  //     name: "Tony Reichert",
-  //     cedula: "4.234.234",
-  //     date: "01/01/2022 - 01/02/2022 ",
-  //     time: "8:00 - 9:00",
-  //     tel: "981 234234",
-  //     status: "activo",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Zoey Lang",
-  //     status: "activo",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Jane Fisher",
-  //     status: "vencido",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "William Howard",
-  //     status: "vencido",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Kristen Copper",
-  //     status: "activo",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Tony Reichert",
-  //     status: "activo",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Zoey Lang",
-  //     status: "vencido",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Jane Fisher",
-  //     status: "activo",
-  //   },
-  //   {
-  //     id: 9,
-  //     name: "William Howard",
-  //     status: "vencido",
-  //   },
-  //   {
-  //     id: 10,
-  //     name: "Kristen Copper",
-  //     status: "vencido",
-  //   },
-  // ];
-
-  const renderCell = (user: IUser, columnKey: Key) => {
+  const renderCell = (user: IUser, columnKey: string) => {
     const {
-      nombre,
-      apellido,
-      cedula,
-      telefono,
-      fechaInicial,
-      fechaFinal,
-      horarioInicial,
-      horarioFinal,
-      estado,
       _id,
+      first_name,
+      last_name,
+      document_number,
+      from_date,
+      to_date,
+      from_hour,
+      to_hour,
+      phone_number,
+      state,
     } = user;
-    const fechaInicio = new Date(fechaInicial).toLocaleDateString("py-PY");
-    const fechaFin = new Date(fechaFinal).toLocaleDateString("py-PY");
-    const horarioInicio = new Date(horarioInicial).toLocaleTimeString("py-PY");
-    const horarioFin = new Date(horarioFinal).toLocaleTimeString("py-PY");
-    const hora1 = horarioInicio.split(":");
-    const hora2 = horarioFin.split(":");
-
+    const expiration = (value?: boolean) => (value ? "activo" : "vencido");
     switch (columnKey) {
       case "nombre":
         return (
           <Text b css={{ tt: "capitalize" }}>
-            {`${nombre} ${apellido}`}
+            {`${first_name} ${last_name}`}
           </Text>
         );
-
       case "cedula":
-        return <Text>{numericos.formatoMiles(cedula)}</Text>;
+        return <Text>{numericos.formatoMiles(parseInt(document_number))}</Text>;
       case "fecha":
-        return <Text>{`${fechaInicio} - ${fechaFin}`}</Text>;
+        return (
+          <Text>{`${numericos.formatDate(from_date)} - ${numericos.formatDate(
+            to_date
+          )}`}</Text>
+        );
 
       case "horario":
-        return (
-          <Text>{`${hora1[0]}:${hora1[1]} - ${hora2[0]}:${hora2[1]}`}</Text>
-        );
+        return <Text>{`${from_hour} - ${to_hour}`}</Text>;
+
+      case "telefono":
+        return <Text>{phone_number}</Text>;
 
       case "estado":
         return (
-          <StyledBadge type={estado ? "activo" : "vencido"}>
-            {estado ? "activo" : "vencido"}
+          <StyledBadge type={expiration(state)}>
+            {expiration(state)}
           </StyledBadge>
         );
-
       case "actions":
         return (
           <Row justify="center" align="center">
@@ -132,7 +75,12 @@ export const TableUser = () => {
             </Col> */}
             <Col css={{ d: "flex" }}>
               <Tooltip content="Editar">
-                <IconButton onClick={() => console.log("Editar", _id)}>
+                <IconButton
+                  onClick={() => {
+                    openModal(true);
+                    editUser(user);
+                  }}
+                >
                   <EditIcon size={20} fill="#979797" />
                 </IconButton>
               </Tooltip>
@@ -159,7 +107,7 @@ export const TableUser = () => {
     <Table
       aria-label="tabla usuarios"
       css={{
-        height: '580px'
+        height: "580px",
       }}
       selectionMode="none"
       lined
@@ -177,7 +125,7 @@ export const TableUser = () => {
       </Table.Header>
       <Table.Body items={users}>
         {(item: IUser) => (
-          <Table.Row key={item._id}>
+          <Table.Row key={item?._id}>
             {(columnKey) => (
               <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>
             )}
@@ -186,11 +134,13 @@ export const TableUser = () => {
       </Table.Body>
       <Table.Pagination
         color="gradient"
+        total={dataPagination?.total_pages}
+        page={dataPagination?.page}
+        rowsPerPage={dataPagination?.per_page}
         shadow
         noMargin
         align="center"
-        rowsPerPage={10}
-        onPageChange={(page) => console.log({ page })}
+        onPageChange={(page) => getUsers(page)}
       />
     </Table>
   );

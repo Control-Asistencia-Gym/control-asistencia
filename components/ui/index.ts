@@ -6,3 +6,5 @@ export * from "./EyeIcon";
 export * from "./DeleteIcon";
 export * from "./EditIcon";
 export * from "./ModalUser";
+export * from "./Password";
+export * from "./Mail";
