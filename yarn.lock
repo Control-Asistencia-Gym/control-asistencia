@@ -131,6 +131,13 @@
   dependencies:
     glob "7.1.7"
 
+"@next/eslint-plugin-next@^12.3.1":
+  version "12.3.1"
+  resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.3.1.tgz#b821f27b0f175954d8d18e5d323fce040ecc79a6"
+  integrity sha512-sw+lTf6r6P0j+g/n9y4qdWWI2syPqZx+uc0+B/fRENqfR3KpSid6MIKqc9gNwGhJASazEQ5b3w8h4cAET213jw==
+  dependencies:
+    glob "7.1.7"
+
 "@next/swc-android-arm-eabi@12.2.2":
   version "12.2.2"
   resolved "https://registry.yarnpkg.com/@next/swc-android-arm-eabi/-/swc-android-arm-eabi-12.2.2.tgz#f6c4111e6371f73af6bf80c9accb3d96850a92cd"
@@ -1407,6 +1414,11 @@ eslint-plugin-react-hooks@^4.5.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.6.0.tgz#4c3e697ad95b77e93f8646aaa1630c1ba607edd3"
   integrity sha512-oFc7Itz9Qxh2x4gNHStv3BqJq54ExXmfC+a1NjAta66IAN87Wu0R/QArgIS9qKzX3dXKPI9H5crl9QchNMY9+g==
+
+eslint-plugin-react-hooks@^5.0.0-next-0cac4d54c-20220921:
+  version "5.0.0-next-0cac4d54c-20220921"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.0.0-next-0cac4d54c-20220921.tgz#cc6f651b7260bff713f63b9bf1f2f553107d1c75"
+  integrity sha512-uUZPbhwZLaLuAc3A843udscTEQG7KnGmJccgC0pa289ZIkMPSha8/cqQ+Rf81/lbWjqyyUQg6sZGxFKtKgBDTA==
 
 eslint-plugin-react@^7.29.4:
   version "7.31.8"
