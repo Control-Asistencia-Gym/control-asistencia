@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Key, useContext } from "react";
 import { Table, Row, Col, Tooltip, Text } from "@nextui-org/react";
 import { IconButton, StyledBadge, DeleteIcon, EditIcon } from "../ui";
 import { IUser } from "../../interfaces";
@@ -21,7 +21,7 @@ export const TableUser = () => {
   const { editUser, getUsers, users, dataPagination } =
     useContext(UsersContext);
 
-  const renderCell = (user: IUser, columnKey: string) => {
+  const renderCell = (user: IUser, columnKey: Key) => {
     const {
       _id,
       first_name,
@@ -35,6 +35,7 @@ export const TableUser = () => {
       state,
     } = user;
     const expiration = (value?: boolean) => (value ? "activo" : "vencido");
+    const cellValue = user[columnKey];
     switch (columnKey) {
       case "nombre":
         return (
@@ -99,7 +100,7 @@ export const TableUser = () => {
           </Row>
         );
       default:
-        return user[columnKey];
+        return cellValue;
     }
   };
 
