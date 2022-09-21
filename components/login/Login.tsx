@@ -3,6 +3,7 @@ import { Button, Spacer, Container, Input, Row, Text } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { Mail, Password } from "../ui";
 import { AuthContext } from "../../context/auth";
+import { validation } from "../../utils";
 
 type FormData = {
   email: string;
@@ -42,7 +43,7 @@ const Login = () => {
             helperText={errors.email?.message}
             {...register("email", {
               required: "*Correo es obligatorio",
-              //   validate: validation.isEmail,
+              validate: validation.isEmail,
             })}
           />
         </Row>
